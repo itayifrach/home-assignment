@@ -1,0 +1,25 @@
+{
+  "passed": 1,
+  "total": 1,
+  "cases": [
+    {
+      "id": "non_hub_city_stat",
+      "passed": true,
+      "failures": [],
+      "seconds": 10.3,
+      "answer": "**Buffalo, NY had 27 days with at least 1 cm of snowfall in 2024**, which is 7.4% of the year's 366 days.\n\nOther 2024 totals for the same location:\n- Total snowfall: 79.6 cm\n- Total precipitation: 1264.5 mm\n- Lowest temperature: -14.0 \u00b0C; highest: 31.1 \u00b0C\n- Strongest gust: 108.0 km/h\n\nBuffalo isn't one of our hubs, so it has no risk score.",
+      "tools": [
+        "weather_stat"
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "input_tokens": 6,
+        "cache_read_input_tokens": 4434,
+        "cache_creation_input_tokens": 4860,
+        "output_tokens": 746
+      },
+      "hubs": [],
+      "question_type": "weather_statistic"
+    }
+  ]
+}

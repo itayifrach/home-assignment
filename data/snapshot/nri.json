@@ -1,0 +1,1168 @@
+{
+ "04013": {
+  "county": "Maricopa",
+  "state": "AZ",
+  "composite_risk_score": 99.87277353689568,
+  "composite_risk_rating": "Very High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 15.45,
+    "annual_freq": 0.567,
+    "fema_rating": "Relatively Low"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 7.04,
+    "annual_freq": 0.012,
+    "fema_rating": "Very Low"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 87.07,
+    "annual_freq": 8.464,
+    "fema_rating": "Very High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 11.07,
+    "annual_freq": 0.571,
+    "fema_rating": "Relatively Moderate"
+   },
+   "hail": {
+    "loss_rate_pctl": 56.87,
+    "annual_freq": 0.28,
+    "fema_rating": "Very High"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 51.91,
+    "annual_freq": 19.826,
+    "fema_rating": "Very High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 36.47,
+    "annual_freq": 1.401,
+    "fema_rating": "Very High"
+   }
+  }
+ },
+ "06037": {
+  "county": "Los Angeles",
+  "state": "CA",
+  "composite_risk_score": 100,
+  "composite_risk_rating": "Very High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 4.06,
+    "annual_freq": 6.587,
+    "fema_rating": "Relatively Moderate"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "No Rating"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 94.62,
+    "annual_freq": 3.964,
+    "fema_rating": "Very High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 55.61,
+    "annual_freq": 2.169,
+    "fema_rating": "Relatively High"
+   },
+   "tornado": {
+    "loss_rate_pctl": 24.9,
+    "annual_freq": 0.49,
+    "fema_rating": "Relatively High"
+   },
+   "hail": {
+    "loss_rate_pctl": 15.69,
+    "annual_freq": 0.098,
+    "fema_rating": "Relatively Moderate"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 48.13,
+    "annual_freq": 9.453,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 2.98,
+    "annual_freq": 0.145,
+    "fema_rating": "Relatively Moderate"
+   }
+  }
+ },
+ "08031": {
+  "county": "Denver",
+  "state": "CO",
+  "composite_risk_score": 95.22900763358778,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 43.28,
+    "annual_freq": 13.738,
+    "fema_rating": "Relatively High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 11.3,
+    "annual_freq": 0.016,
+    "fema_rating": "Very Low"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 34.34,
+    "annual_freq": 0.821,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 88.12,
+    "annual_freq": 0.16,
+    "fema_rating": "Relatively High"
+   },
+   "hail": {
+    "loss_rate_pctl": 97.92,
+    "annual_freq": 8.291,
+    "fema_rating": "Very High"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 24.8,
+    "annual_freq": 1.0,
+    "fema_rating": "Relatively Low"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 28.4,
+    "annual_freq": 1.189,
+    "fema_rating": "Relatively High"
+   }
+  }
+ },
+ "12086": {
+  "county": "Miami-Dade",
+  "state": "FL",
+  "composite_risk_score": 99.61832061068702,
+  "composite_risk_rating": "Very High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "No Rating"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 85.31,
+    "annual_freq": 0.305,
+    "fema_rating": "Very High"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 49.66,
+    "annual_freq": 4,
+    "fema_rating": "Very High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 68.2,
+    "annual_freq": 2.25,
+    "fema_rating": "Very High"
+   },
+   "tornado": {
+    "loss_rate_pctl": 15.75,
+    "annual_freq": 1.074,
+    "fema_rating": "Relatively High"
+   },
+   "hail": {
+    "loss_rate_pctl": 27.84,
+    "annual_freq": 0.559,
+    "fema_rating": "Relatively High"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 16.05,
+    "annual_freq": 6.157,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 2.6,
+    "annual_freq": 0.758,
+    "fema_rating": "Relatively Moderate"
+   }
+  }
+ },
+ "13121": {
+  "county": "Fulton",
+  "state": "GA",
+  "composite_risk_score": 95.80152671755725,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 25.23,
+    "annual_freq": 2.518,
+    "fema_rating": "Relatively Moderate"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 44.09,
+    "annual_freq": 1.218,
+    "fema_rating": "Relatively High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 41.57,
+    "annual_freq": 0.038,
+    "fema_rating": "Relatively Low"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 26.24,
+    "annual_freq": 2.714,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 50.67,
+    "annual_freq": 0.337,
+    "fema_rating": "Relatively High"
+   },
+   "hail": {
+    "loss_rate_pctl": 42.2,
+    "annual_freq": 5.597,
+    "fema_rating": "Relatively High"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 5.65,
+    "annual_freq": 2.261,
+    "fema_rating": "Relatively Moderate"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 15.29,
+    "annual_freq": 2.752,
+    "fema_rating": "Relatively High"
+   }
+  }
+ },
+ "17031": {
+  "county": "Cook",
+  "state": "IL",
+  "composite_risk_score": 99.96819338422391,
+  "composite_risk_rating": "Very High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 43.96,
+    "annual_freq": 14.599,
+    "fema_rating": "Very High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 33.32,
+    "annual_freq": 0.576,
+    "fema_rating": "Very High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 6.92,
+    "annual_freq": 0.009,
+    "fema_rating": "Very Low"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 78.09,
+    "annual_freq": 5.893,
+    "fema_rating": "Very High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 25.17,
+    "annual_freq": 0.012,
+    "fema_rating": "Relatively Low"
+   },
+   "tornado": {
+    "loss_rate_pctl": 47.44,
+    "annual_freq": 1.038,
+    "fema_rating": "Very High"
+   },
+   "hail": {
+    "loss_rate_pctl": 35.38,
+    "annual_freq": 3.953,
+    "fema_rating": "Relatively High"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 22.36,
+    "annual_freq": 2.903,
+    "fema_rating": "Very High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 5.27,
+    "annual_freq": 5.703,
+    "fema_rating": "Very High"
+   }
+  }
+ },
+ "18097": {
+  "county": "Marion",
+  "state": "IN",
+  "composite_risk_score": 97.48727735368958,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 40.12,
+    "annual_freq": 10.053,
+    "fema_rating": "Relatively High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 37.75,
+    "annual_freq": 0.776,
+    "fema_rating": "Relatively High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 7.57,
+    "annual_freq": 0.008,
+    "fema_rating": "Very Low"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 53.34,
+    "annual_freq": 2.929,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 73.15,
+    "annual_freq": 0.306,
+    "fema_rating": "Very High"
+   },
+   "hail": {
+    "loss_rate_pctl": 36.84,
+    "annual_freq": 4.239,
+    "fema_rating": "Relatively Moderate"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 6.59,
+    "annual_freq": 4.368,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 3.75,
+    "annual_freq": 4.597,
+    "fema_rating": "Very High"
+   }
+  }
+ },
+ "22071": {
+  "county": "Orleans",
+  "state": "LA",
+  "composite_risk_score": 98.25063613231552,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 37.31,
+    "annual_freq": 0.751,
+    "fema_rating": "Relatively Moderate"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 19.16,
+    "annual_freq": 0.202,
+    "fema_rating": "Relatively Moderate"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 98.83,
+    "annual_freq": 0.25,
+    "fema_rating": "Very High"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 33.11,
+    "annual_freq": 2.679,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 62.93,
+    "annual_freq": 3.751,
+    "fema_rating": "Relatively Moderate"
+   },
+   "tornado": {
+    "loss_rate_pctl": 1.74,
+    "annual_freq": 0.278,
+    "fema_rating": "Relatively Moderate"
+   },
+   "hail": {
+    "loss_rate_pctl": 45.71,
+    "annual_freq": 1.212,
+    "fema_rating": "Relatively Moderate"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 34.85,
+    "annual_freq": 14.233,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 6.14,
+    "annual_freq": 1.158,
+    "fema_rating": "Relatively Low"
+   }
+  }
+ },
+ "25025": {
+  "county": "Suffolk",
+  "state": "MA",
+  "composite_risk_score": 93.51145038167938,
+  "composite_risk_rating": "Relatively Moderate",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 35.02,
+    "annual_freq": 12.225,
+    "fema_rating": "Relatively Low"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 18.26,
+    "annual_freq": 1.013,
+    "fema_rating": "Relatively Moderate"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 75.21,
+    "annual_freq": 0.184,
+    "fema_rating": "Relatively High"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 6.87,
+    "annual_freq": 1.679,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 66.84,
+    "annual_freq": 7.399,
+    "fema_rating": "Relatively High"
+   },
+   "tornado": {
+    "loss_rate_pctl": 40.37,
+    "annual_freq": 0.018,
+    "fema_rating": "Relatively Moderate"
+   },
+   "hail": {
+    "loss_rate_pctl": 22.98,
+    "annual_freq": 1.643,
+    "fema_rating": "Relatively Moderate"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 7.71,
+    "annual_freq": 5.254,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 16.74,
+    "annual_freq": 0.704,
+    "fema_rating": "Relatively Moderate"
+   }
+  }
+ },
+ "26163": {
+  "county": "Wayne",
+  "state": "MI",
+  "composite_risk_score": 98.95038167938931,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 77.09,
+    "annual_freq": 10.211,
+    "fema_rating": "Relatively High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 50.45,
+    "annual_freq": 1.882,
+    "fema_rating": "Very High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 14.73,
+    "annual_freq": 0.011,
+    "fema_rating": "Very Low"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 30.97,
+    "annual_freq": 3.143,
+    "fema_rating": "Very High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 31.46,
+    "annual_freq": 0.015,
+    "fema_rating": "Relatively Low"
+   },
+   "tornado": {
+    "loss_rate_pctl": 44.03,
+    "annual_freq": 0.277,
+    "fema_rating": "Very High"
+   },
+   "hail": {
+    "loss_rate_pctl": 6.98,
+    "annual_freq": 2.847,
+    "fema_rating": "Relatively Low"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 6.56,
+    "annual_freq": 4.316,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 58.64,
+    "annual_freq": 5.096,
+    "fema_rating": "Very High"
+   }
+  }
+ },
+ "27053": {
+  "county": "Hennepin",
+  "state": "MN",
+  "composite_risk_score": 98.31424936386769,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 47.74,
+    "annual_freq": 16.579,
+    "fema_rating": "Very High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 31.99,
+    "annual_freq": 0.485,
+    "fema_rating": "Relatively Moderate"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 26.14,
+    "annual_freq": 1.536,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 71.44,
+    "annual_freq": 0.458,
+    "fema_rating": "Very High"
+   },
+   "hail": {
+    "loss_rate_pctl": 88.43,
+    "annual_freq": 6.412,
+    "fema_rating": "Very High"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 7.56,
+    "annual_freq": 6.684,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 77.64,
+    "annual_freq": 4.566,
+    "fema_rating": "Very High"
+   }
+  }
+ },
+ "29095": {
+  "county": "Jackson",
+  "state": "MO",
+  "composite_risk_score": 96.50127226463104,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 42.48,
+    "annual_freq": 11.211,
+    "fema_rating": "Relatively High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 39.15,
+    "annual_freq": 0.925,
+    "fema_rating": "Relatively High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "No Rating"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 32.05,
+    "annual_freq": 4.357,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 72.09,
+    "annual_freq": 0.384,
+    "fema_rating": "Very High"
+   },
+   "hail": {
+    "loss_rate_pctl": 92.16,
+    "annual_freq": 8.165,
+    "fema_rating": "Very High"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 10.52,
+    "annual_freq": 14.947,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 43.41,
+    "annual_freq": 6.192,
+    "fema_rating": "Relatively High"
+   }
+  }
+ },
+ "29510": {
+  "county": "St. Louis",
+  "state": "MO",
+  "composite_risk_score": 98.69592875318067,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 40.99,
+    "annual_freq": 8.737,
+    "fema_rating": "Relatively Moderate"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 47.28,
+    "annual_freq": 1.547,
+    "fema_rating": "Relatively High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 10.46,
+    "annual_freq": 0.012,
+    "fema_rating": "Very Low"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 84.99,
+    "annual_freq": 1.286,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 69.92,
+    "annual_freq": 0.057,
+    "fema_rating": "Very High"
+   },
+   "hail": {
+    "loss_rate_pctl": 41.3,
+    "annual_freq": 5.29,
+    "fema_rating": "Relatively Moderate"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 4.75,
+    "annual_freq": 15.053,
+    "fema_rating": "Very High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 57.64,
+    "annual_freq": 6.249,
+    "fema_rating": "Relatively High"
+   }
+  }
+ },
+ "31055": {
+  "county": "Douglas",
+  "state": "NE",
+  "composite_risk_score": 95.86513994910942,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 47.99,
+    "annual_freq": 13.684,
+    "fema_rating": "Very High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 75.37,
+    "annual_freq": 0.909,
+    "fema_rating": "Very High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "No Rating"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 44.8,
+    "annual_freq": 1.786,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 90.45,
+    "annual_freq": 0.288,
+    "fema_rating": "Very High"
+   },
+   "hail": {
+    "loss_rate_pctl": 89.71,
+    "annual_freq": 6.871,
+    "fema_rating": "Very High"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 79.42,
+    "annual_freq": 8.158,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 53.55,
+    "annual_freq": 4.345,
+    "fema_rating": "Very High"
+   }
+  }
+ },
+ "34013": {
+  "county": "Essex",
+  "state": "NJ",
+  "composite_risk_score": 97.70992366412213,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 23.78,
+    "annual_freq": 11.297,
+    "fema_rating": "Very High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 15.59,
+    "annual_freq": 0.744,
+    "fema_rating": "Relatively Moderate"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 67.28,
+    "annual_freq": 0.107,
+    "fema_rating": "Relatively Moderate"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 69.99,
+    "annual_freq": 3.071,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 55.78,
+    "annual_freq": 3.762,
+    "fema_rating": "Relatively Moderate"
+   },
+   "tornado": {
+    "loss_rate_pctl": 25.92,
+    "annual_freq": 0.047,
+    "fema_rating": "Relatively High"
+   },
+   "hail": {
+    "loss_rate_pctl": 27.22,
+    "annual_freq": 2.42,
+    "fema_rating": "Relatively Moderate"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 10.93,
+    "annual_freq": 9.259,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 5.21,
+    "annual_freq": 6.364,
+    "fema_rating": "Very High"
+   }
+  }
+ },
+ "37119": {
+  "county": "Mecklenburg",
+  "state": "NC",
+  "composite_risk_score": 97.07379134860051,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 31.21,
+    "annual_freq": 5.263,
+    "fema_rating": "Relatively High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 52.35,
+    "annual_freq": 2.104,
+    "fema_rating": "Relatively High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 55.94,
+    "annual_freq": 0.086,
+    "fema_rating": "Relatively Moderate"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 76.98,
+    "annual_freq": 3.5,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 35.22,
+    "annual_freq": 0.284,
+    "fema_rating": "Relatively High"
+   },
+   "hail": {
+    "loss_rate_pctl": 40.47,
+    "annual_freq": 4.8,
+    "fema_rating": "Relatively High"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 5.53,
+    "annual_freq": 3.0,
+    "fema_rating": "Relatively Moderate"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 2.79,
+    "annual_freq": 2.731,
+    "fema_rating": "Relatively High"
+   }
+  }
+ },
+ "39049": {
+  "county": "Franklin",
+  "state": "OH",
+  "composite_risk_score": 98.05979643765903,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 41.95,
+    "annual_freq": 11.316,
+    "fema_rating": "Relatively High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 35.89,
+    "annual_freq": 0.727,
+    "fema_rating": "Relatively High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 13.52,
+    "annual_freq": 0.006,
+    "fema_rating": "Very Low"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 47.18,
+    "annual_freq": 3.5,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 64.9,
+    "annual_freq": 0.287,
+    "fema_rating": "Relatively High"
+   },
+   "hail": {
+    "loss_rate_pctl": 58.33,
+    "annual_freq": 3.108,
+    "fema_rating": "Relatively High"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 6.25,
+    "annual_freq": 4.158,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 42.82,
+    "annual_freq": 1.806,
+    "fema_rating": "Relatively High"
+   }
+  }
+ },
+ "47037": {
+  "county": "Davidson",
+  "state": "TN",
+  "composite_risk_score": 97.16921119592875,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 32.01,
+    "annual_freq": 5.474,
+    "fema_rating": "Relatively Moderate"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 36.82,
+    "annual_freq": 0.686,
+    "fema_rating": "Relatively Moderate"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 19.84,
+    "annual_freq": 0.013,
+    "fema_rating": "Very Low"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 65.28,
+    "annual_freq": 3.786,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 58.54,
+    "annual_freq": 0.433,
+    "fema_rating": "Relatively High"
+   },
+   "hail": {
+    "loss_rate_pctl": 31.78,
+    "annual_freq": 3.304,
+    "fema_rating": "Relatively Moderate"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 46.91,
+    "annual_freq": 4.789,
+    "fema_rating": "Relatively Moderate"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 38.33,
+    "annual_freq": 5.973,
+    "fema_rating": "Relatively High"
+   }
+  }
+ },
+ "47157": {
+  "county": "Shelby",
+  "state": "TN",
+  "composite_risk_score": 99.36386768447836,
+  "composite_risk_rating": "Relatively High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 31.46,
+    "annual_freq": 5.263,
+    "fema_rating": "Relatively High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 41.09,
+    "annual_freq": 1.094,
+    "fema_rating": "Relatively High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 31.59,
+    "annual_freq": 0.024,
+    "fema_rating": "Relatively Low"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 40.35,
+    "annual_freq": 5.179,
+    "fema_rating": "Relatively High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 87.72,
+    "annual_freq": 0.509,
+    "fema_rating": "Very High"
+   },
+   "hail": {
+    "loss_rate_pctl": 3.78,
+    "annual_freq": 3.093,
+    "fema_rating": "Very Low"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 8.78,
+    "annual_freq": 21.737,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 29.05,
+    "annual_freq": 1.293,
+    "fema_rating": "Relatively High"
+   }
+  }
+ },
+ "48113": {
+  "county": "Dallas",
+  "state": "TX",
+  "composite_risk_score": 99.6501272264631,
+  "composite_risk_rating": "Very High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 27.18,
+    "annual_freq": 4.053,
+    "fema_rating": "Very High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 38.75,
+    "annual_freq": 1.226,
+    "fema_rating": "Very High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 28.85,
+    "annual_freq": 0.012,
+    "fema_rating": "Relatively Low"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 38.58,
+    "annual_freq": 4.607,
+    "fema_rating": "Very High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "tornado": {
+    "loss_rate_pctl": 97.92,
+    "annual_freq": 0.928,
+    "fema_rating": "Very High"
+   },
+   "hail": {
+    "loss_rate_pctl": 98.29,
+    "annual_freq": 8.922,
+    "fema_rating": "Very High"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 5.09,
+    "annual_freq": 19.105,
+    "fema_rating": "Very High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 15.53,
+    "annual_freq": 4.361,
+    "fema_rating": "Very High"
+   }
+  }
+ },
+ "48201": {
+  "county": "Harris",
+  "state": "TX",
+  "composite_risk_score": 99.93638676844783,
+  "composite_risk_rating": "Very High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 17.49,
+    "annual_freq": 1.121,
+    "fema_rating": "Relatively High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 47.85,
+    "annual_freq": 0.905,
+    "fema_rating": "Very High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 83.82,
+    "annual_freq": 0.184,
+    "fema_rating": "Very High"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 85.52,
+    "annual_freq": 5.143,
+    "fema_rating": "Very High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 48.3,
+    "annual_freq": 3.761,
+    "fema_rating": "Relatively High"
+   },
+   "tornado": {
+    "loss_rate_pctl": 15.47,
+    "annual_freq": 1.61,
+    "fema_rating": "Very High"
+   },
+   "hail": {
+    "loss_rate_pctl": 17.77,
+    "annual_freq": 2.35,
+    "fema_rating": "Relatively Moderate"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 8.96,
+    "annual_freq": 14.861,
+    "fema_rating": "Very High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 29.09,
+    "annual_freq": 1.523,
+    "fema_rating": "Very High"
+   }
+  }
+ },
+ "53033": {
+  "county": "King",
+  "state": "WA",
+  "composite_risk_score": 99.68193384223919,
+  "composite_risk_rating": "Very High",
+  "hazards": {
+   "winter_weather": {
+    "loss_rate_pctl": 34.86,
+    "annual_freq": 26.873,
+    "fema_rating": "Relatively High"
+   },
+   "ice_storm": {
+    "loss_rate_pctl": 36.59,
+    "annual_freq": 0.765,
+    "fema_rating": "Relatively High"
+   },
+   "hurricane": {
+    "loss_rate_pctl": 0.0,
+    "annual_freq": 0.0,
+    "fema_rating": "Not Applicable"
+   },
+   "inland_flood": {
+    "loss_rate_pctl": 48.17,
+    "annual_freq": 0.286,
+    "fema_rating": "Very High"
+   },
+   "coastal_flood": {
+    "loss_rate_pctl": 51.19,
+    "annual_freq": 3.177,
+    "fema_rating": "Relatively Moderate"
+   },
+   "tornado": {
+    "loss_rate_pctl": 4.06,
+    "annual_freq": 0.075,
+    "fema_rating": "Relatively Moderate"
+   },
+   "hail": {
+    "loss_rate_pctl": 22.14,
+    "annual_freq": 0.034,
+    "fema_rating": "Very Low"
+   },
+   "heat_wave": {
+    "loss_rate_pctl": 54.37,
+    "annual_freq": 3.81,
+    "fema_rating": "Relatively High"
+   },
+   "strong_wind": {
+    "loss_rate_pctl": 5.18,
+    "annual_freq": 0.014,
+    "fema_rating": "Very Low"
+   }
+  }
+ }
+}

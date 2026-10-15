@@ -1,0 +1,9 @@
+{
+ "fetched_at": "2026-10-15T11:12:15+00:00",
+ "climate_start": "2021-01-01",
+ "climate_end": "2025-12-31",
+ "sources": {
+  "weather": "Open-Meteo Historical Weather API (ERA5 reanalysis), archive-api.open-meteo.com",
+  "hazard": "FEMA National Risk Index, county level (Expected Annual Loss Rate national percentile)"
+ }
+}

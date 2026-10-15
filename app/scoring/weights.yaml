@@ -1,0 +1,83 @@
+# Weather Disruption Risk - KPI definition.
+# This file IS the business logic: analysts can tune thresholds and weights without touching code.
+# Bump `version` whenever you change it - every score snapshot records the version it was computed with.
+version: "1.0"
+
+# Step 1 - daily thresholds that turn raw weather into "disruption days"
+thresholds:
+  snow_day_cm: 1.0        # a day with >= 1 cm snowfall disrupts yard + road operations
+  any_snow_cm: 0.1        # "had snowfall" for snow-day % questions (filters ERA5 trace noise)
+  hard_freeze_c: -12.0    # <= 10°F: equipment, de-icing, worker-safety issues
+  heavy_rain_mm: 25.0     # >= 1 inch/day: localized flooding, slow trucking
+  high_wind_kmh: 65.0     # gusts >= 40 mph: high-profile vehicles restricted, dock doors
+  extreme_heat_c: 38.0    # >= 100°F: heat-safety work restrictions
+
+# Observed metrics are scaled linearly: 0 days/yr -> 0, saturation level -> 100 (capped).
+# Saturation = the level at which we consider a hub "maximally" exposed on that metric. Absolute scaling means
+# a hub's score does not change when we add or remove other hubs from the network.
+saturation_days_per_year:
+  snow_days_per_year: 30
+  hard_freeze_days_per_year: 45
+  heavy_rain_days_per_year: 25
+  high_wind_days_per_year: 25
+  extreme_heat_days_per_year: 60
+
+# Step 2 + 3 - hazard scores (0-100).
+# Design rule: where 5 years of observations sample a hazard well (snow, freeze, heat, heavy rain recur every
+# year) observed data gets real weight; for rare events (hurricanes, tornadoes) FEMA's long-record data dominates.
+# Each component is normalized to 0-100:
+#   source: nri      -> FEMA NRI Expected-Annual-Loss-Rate national percentile (already 0-100)
+#   source: climate  -> observed days/yr scaled against saturation_days_per_year (0-100)
+hazards:
+  winter:
+    label: Winter
+    components:
+      - {source: nri, fields: [winter_weather, ice_storm], agg: mean, weight: 0.50}
+      - {source: climate, metric: snow_days_per_year, weight: 0.25}
+      - {source: climate, metric: hard_freeze_days_per_year, weight: 0.25}
+  hurricane:
+    # FEMA only: a 5-year window under-samples rare landfalls (2021-25 had few direct hits on our hubs)
+    label: Hurricane
+    components:
+      - {source: nri, fields: [hurricane], agg: mean, weight: 1.00}
+  flood:
+    label: Flood
+    components:
+      - {source: nri, fields: [inland_flood, coastal_flood], agg: max, weight: 0.60}
+      - {source: climate, metric: heavy_rain_days_per_year, weight: 0.40}
+  severe_storm:
+    label: Severe Storm (tornado, hail, high wind)
+    components:
+      - {source: nri, fields: [tornado, hail], agg: mean, weight: 0.70}
+      - {source: climate, metric: high_wind_days_per_year, weight: 0.30}
+  heat:
+    label: Extreme Heat
+    components:
+      # Observed-heavy: heat days recur every year, so 5 years samples them well, and FEMA's loss
+      # RATE is low where cities are built for heat (Phoenix) even though work restrictions still bite.
+      - {source: nri, fields: [heat_wave], agg: mean, weight: 0.40}
+      - {source: climate, metric: extreme_heat_days_per_year, weight: 0.60}
+
+# Step 4 - headline KPI: Weather Disruption Risk Score (0-100)
+overall_weights:
+  winter: 0.25
+  flood: 0.25
+  hurricane: 0.20
+  severe_storm: 0.15
+  heat: 0.15
+
+# Tier thresholds for the overall score. The overall score averages five hazards and no location is exposed
+# to all of them, so its range is compressed (network max ~47). Calibrated so "High" means roughly
+# "one Very High hazard plus meaningful secondary exposure".
+overall_tiers:
+  - {min: 45, label: Very High}
+  - {min: 35, label: High}
+  - {min: 25, label: Moderate}
+  - {min: 0, label: Low}
+
+# Tier thresholds for individual hazard scores (lower bound inclusive), checked top-down
+tiers:
+  - {min: 75, label: Very High}
+  - {min: 50, label: High}
+  - {min: 25, label: Moderate}
+  - {min: 0, label: Low}

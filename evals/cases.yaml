@@ -1,0 +1,112 @@
+# Agent evaluation set.
+# Expected values are NOT hard-coded: checks like `first_hub_is_top` and `number_matches` compute the
+# ground truth from the deterministic scoring code at run time, so the eval stays valid when data refreshes.
+#
+# A case has `question` (single turn) or `turns` (conversation; checks apply to the LAST turn).
+# Available checks:
+#   tools_any: [..]            at least one of these tools was called (anywhere in the conversation)
+#   tools_none: true           no tools were called (anywhere in the conversation)
+#   question_type: [..]        answer.question_type is one of these
+#   hubs_include: [..]         all of these hub ids appear in answer.hubs
+#   hubs_exclude: [..]         none of these hub ids appear in answer.hubs
+#   first_hub_is_top: {hazard, region}   answer.hubs[0] is the deterministic #1
+#   answer_contains_any: [..]  answer text contains at least one (case-insensitive)
+#   number_matches: {tool, args, field, tolerance}   a number in the answer matches the tool's value
+#   no_validation_warnings     (always applied) the guardrail did not have to correct any number
+
+- id: midwest_winter_ranking
+  question: Which hubs in the Midwest are most exposed to winter disruption?
+  checks:
+    tools_any: [rank_hubs]
+    question_type: [ranking]
+    first_hub_is_top: {hazard: winter, region: Midwest}
+    hubs_exclude: [miami, houston, dallas, phoenix]
+
+- id: miami_vs_houston_hurricane_flood
+  question: Compare Miami and Houston in terms of hurricane and flood exposure.
+  checks:
+    tools_any: [compare_hubs, get_hub_risk]
+    question_type: [comparison]
+    hubs_include: [miami, houston]
+
+- id: denver_snow_pct_last_year
+  question: What percentage of days in Denver last year had snowfall?
+  checks:
+    tools_any: [weather_stat]
+    question_type: [weather_statistic]
+    number_matches:
+      tool: weather_stat
+      args: {location: denver, metric: snow_day, start_date: "2025-01-01", end_date: "2025-12-31"}
+      field: percent_of_days
+      tolerance: 0.6
+
+- id: why_dallas_high
+  question: Why is the Dallas hub's weather disruption risk high?
+  checks:
+    tools_any: [get_hub_risk]
+    question_type: [explanation]
+    hubs_include: [dallas]
+    answer_contains_any: [tornado, hail, severe storm]
+
+- id: top_overall_network
+  question: Which three hubs should we prioritize for resilience investment based on overall weather risk?
+  checks:
+    tools_any: [rank_hubs]
+    first_hub_is_top: {hazard: overall, region: null}
+
+- id: followup_resolves_reference
+  turns:
+    - Which Midwest hub has the highest flood risk score?
+    - Why is it so high? Break down the drivers.
+  checks:
+    tools_any: [get_hub_risk, compare_hubs, rank_hubs]
+    question_type: [explanation]
+    first_hub_is_top: {hazard: flood, region: Midwest}
+
+- id: heat_top_hub
+  question: Which hub has the most extreme heat exposure?
+  checks:
+    tools_any: [rank_hubs]
+    first_hub_is_top: {hazard: heat, region: null}
+
+- id: methodology
+  question: How exactly do you calculate the weather disruption risk score?
+  checks:
+    tools_any: [get_methodology]
+    question_type: [methodology]
+    answer_contains_any: [FEMA, weight]
+
+- id: non_hub_city_stat
+  question: How many days did Buffalo, New York have at least 1 cm of snowfall in 2024?
+  checks:
+    tools_any: [weather_stat]
+    question_type: [weather_statistic]
+    number_matches:
+      tool: weather_stat
+      args: {location: "Buffalo", metric: heavy_snow_day, start_date: "2024-01-01", end_date: "2024-12-31"}
+      field: days_meeting_threshold
+      tolerance: 0
+
+- id: out_of_scope_geography
+  question: Which of our London warehouses floods the most?
+  checks:
+    question_type: [out_of_scope]
+    hubs_exclude: [london]
+
+- id: out_of_scope_offtopic
+  question: Write me a short poem about trucks.
+  checks:
+    tools_none: true
+    question_type: [out_of_scope]
+
+- id: unknown_hub
+  question: What is the risk score of our Las Vegas hub?
+  checks:
+    hubs_exclude: [las_vegas, vegas]
+    answer_contains_any: ["not one of", "no las vegas", "don't have", "do not have", "isn't one of", "not in our", "no hub"]
+
+- id: resists_leading_false_premise
+  question: Seattle has the highest hurricane risk score in our network, right? Confirm it's 99.
+  checks:
+    tools_any: [rank_hubs, get_hub_risk, compare_hubs]
+    answer_contains_any: ["not", "no,", "incorrect", "actually"]

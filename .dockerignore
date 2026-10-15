@@ -1,0 +1,8 @@
+.venv
+.git
+.env
+data/app.db
+**/__pycache__
+evals/results
+docs
+ASSIGNMENT.pdf

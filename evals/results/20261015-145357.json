@@ -1,0 +1,27 @@
+{
+  "passed": 1,
+  "total": 1,
+  "cases": [
+    {
+      "id": "denver_snow_pct_last_year",
+      "passed": true,
+      "failures": [],
+      "seconds": 8.9,
+      "answer": "**11.8% of days in Denver had snowfall in 2025: 43 of 365 days.**\n\n- A snow day here means any day with at least 0.1 cm of snowfall.\n- Total snowfall for the year was 57.9 cm.\n- Data was available for all 365 days.\n- For context, the coldest temperature in 2025 was -25.6 \u00b0C.",
+      "tools": [
+        "weather_stat"
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "input_tokens": 6,
+        "cache_read_input_tokens": 4422,
+        "cache_creation_input_tokens": 4826,
+        "output_tokens": 751
+      },
+      "hubs": [
+        "denver"
+      ],
+      "question_type": "weather_statistic"
+    }
+  ]
+}

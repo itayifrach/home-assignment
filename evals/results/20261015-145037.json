@@ -1,0 +1,29 @@
+{
+  "passed": 1,
+  "total": 1,
+  "cases": [
+    {
+      "id": "followup_resolves_reference",
+      "passed": true,
+      "failures": [],
+      "seconds": 28.0,
+      "answer": "**St. Louis scores 66.7 on flood (High) mainly because FEMA puts its county in the top 15% of US counties for flood loss rate.** That one input supplies about three-quarters of the score. Observed heavy rain adds the rest.\n\n**Breakdown (flood score = 0.6 \u00d7 FEMA input + 0.4 \u00d7 heavy-rain input):**\n| Input | Raw value | Normalized (0\u2013100) | Weight | Points added |\n|---|---|---|---|---|\n| FEMA NRI flood loss-rate percentile (larger of inland and coastal) | **85.0** (national percentile) | 85.0 | 0.6 | **51.0** |\n| Heavy-rain days per year (observed; 25 days/yr = 100) | **9.8 days/yr** | 39.2 | 0.4 | **15.7** |\n| **Flood score** | | | | **66.7** |\n\n**How to read this:**\n- **The FEMA input is the main driver.** A percentile of 85.0 means St. Louis city's expected flood loss rate is higher than about 85% of US counties. It also carries the larger weight.\n- **Heavy rain adds a moderate amount.** 9.8 days/yr is 39% of the 25 days/yr level that would score 100. That keeps this input in the middle of its range.\n- **The overall picture:** flood is St. Louis's biggest hazard. It adds 16.7 of the hub's 34.6 overall points (Moderate, 10th of 22), about twice as much as winter (8.4). St. Louis ranks 4th of 22 hubs on flood.\n\n**What this means for decisions:** the score depends mostly on the FEMA percentile. A site-level floodplain check would tell you whether this hub's actual exposure matches the county-wide figure.",
+      "tools": [
+        "get_hub_risk",
+        "rank_hubs"
+      ],
+      "usage": {
+        "llm_calls": 1,
+        "input_tokens": 4,
+        "cache_read_input_tokens": 6690,
+        "cache_creation_input_tokens": 1295,
+        "output_tokens": 1181
+      },
+      "hubs": [
+        "st_louis",
+        "st_louis"
+      ],
+      "question_type": "explanation"
+    }
+  ]
+}

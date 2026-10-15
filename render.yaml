@@ -1,0 +1,14 @@
+# Render Blueprint: New > Blueprint > point at this repo. Set ANTHROPIC_API_KEY + ACCESS_TOKEN in the dashboard.
+services:
+  - type: web
+    name: weather-risk-agent
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ACCESS_TOKEN
+        sync: false
+      - key: ANTHROPIC_MODEL
+        value: claude-opus-5-5
