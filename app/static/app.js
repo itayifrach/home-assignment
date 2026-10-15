@@ -66,6 +66,19 @@ function renderAnswer(r) {
   chips(div.querySelector(".chips:last-child"), r.suggested_followups || []);
 }
 
+// Inline access-token form inside a chat message; resolves with the entered token.
+function askToken(container, label) {
+  container.className = "msg agent";
+  container.innerHTML = `<form class="token-form"><label>${esc(label)}</label>
+    <div class="token-row"><input type="password" autocomplete="off" placeholder="Access token">
+    <button type="submit">Unlock</button></div></form>`;
+  const form = container.querySelector("form"), input = form.querySelector("input");
+  input.focus();
+  return new Promise((resolve) => {
+    form.onsubmit = (e) => { e.preventDefault(); if (input.value.trim()) resolve(input.value.trim()); };
+  });
+}
+
 async function send(text) {
   text = (text || $("#input").value).trim();
   if (!text) return;
@@ -104,9 +117,11 @@ async function send(text) {
     if (token) headers["X-Access-Token"] = token;
     const res = await fetch("/api/chat/stream", { method: "POST", headers, body: JSON.stringify({ message: text, session_id: sessionId }) });
     if (res.status === 401) {
-      const t = prompt("This demo is protected. Enter the access token:");
-      if (t) { store("accessToken", t); pending.remove(); userMsg.remove(); $("#send").disabled = false; return send(text); }
-      throw new Error("Access token required");
+      // Ask inline rather than with prompt(): embedded viewers and some locked-down browsers block popups.
+      if (token) store("accessToken", null);   // the saved token was rejected
+      const t = await askToken(pending, token ? "That token was not accepted. Try again:" : "This demo is protected. Enter the access token:");
+      store("accessToken", t); pending.remove(); userMsg.remove(); $("#send").disabled = false;
+      return send(text);
     }
     if (!res.ok) throw new Error((await res.json()).detail || res.statusText);
 
