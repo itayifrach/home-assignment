@@ -5,3 +5,4 @@ __pycache__/
 data/app.db
 .pytest_cache/
 submission/
+ASSIGNMENT.pdf
