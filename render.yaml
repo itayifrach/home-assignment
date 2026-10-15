@@ -11,4 +11,4 @@ services:
       - key: ACCESS_TOKEN
         sync: false
       - key: ANTHROPIC_MODEL
-        value: claude-opus-5-5
+        value: claude-sonnet-5-5

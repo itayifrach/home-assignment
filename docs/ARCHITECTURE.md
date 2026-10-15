@@ -133,15 +133,25 @@ This is a **demo-grade, single-process** design, chosen on purpose for a 1-day b
 - **Rate limiting:** a naive in-memory per-IP limit. Next step: limits at the API gateway.
 - **Cost and latency:** each question makes 2–5 Claude calls; see the measurements below.
 
-### Measured performance (claude-opus-5-5, 13-case eval set)
+### Measured performance (13-case eval set)
 
-| Setting | Pass rate | Eval wall time | Typical question |
-|---|---|---|---|
-| effort `medium` | 13/13 | 193 s | 10–22 s |
-| effort `low` (**default**) | 13/13 | 146 s | 5–15 s |
+| Model and effort | Pass rate | Eval wall time | Typical question | Price (in/out per 1M tokens) |
+|---|---|---|---|---|
+| Opus 5.5, `medium` | 13/13 | 193 s | 10–22 s | $4 / $20 |
+| Opus 5.5, `low` | 13/13 | 141–146 s | 5–15 s | $4 / $20 |
+| Sonnet 5.5, `low`, before prompt fix | 13/13 | 132 s | 3–21 s | $2 / $10 |
+| **Sonnet 5.5, `low` (default)** | **13/13** | **113 s** | **3–15 s** | **$2 / $10** |
+
+**Why Sonnet:** with the evals as the quality bar, the stronger model bought nothing measurable, and Sonnet is faster and half the price. Its individual calls are faster too: ~1.5–2 s to pick a tool and ~5–6 s for the final answer, against ~2–3 s and ~8–10 s on Opus.
+
+**The prompt fix:** on its first run, Sonnet made redundant tool calls. In one case it called the identical `rank_hubs` four times; in another it made 8 tool rounds, including live alerts nobody asked for. Telling it to make fewer calls doesn't work, because Sonnet 5.5 follows tool-limiting language literally and can then skip tools it needs. Two changes fixed it:
+- **Factual prompt guidance:** tool results are deterministic, and the prompt states what each tool already returns (e.g. `get_hub_risk` includes the hub's rank for every hazard).
+- **A duplicate-call guard in the loop:** an identical call in the same turn isn't re-run; the model is told it already has the result.
+
+The step cap was also lowered from 8 to 5 tool rounds as a safety net. Miami-vs-Houston went from 8 tool rounds (21 s) to 1 (7 s).
 
 - **Prompt caching (the API's KV cache) is on and working.** Tools, the system prompt and the history form a stable prefix, and >99% of input tokens are read from cache. One measured follow-up turn: 6 uncached input tokens and 14,238 tokens read from cache.
-- **Where the time goes:** a tool-selecting Claude call takes ~2–3 s. The final answer call takes ~8–10 s, but we measured that **~8 s of that passes before the API sends its first byte** (`message_start`). After that, the answer text arrives in under a second. We isolated the cause by testing the same call without the refusal fallback, without the JSON schema, and with thinking summaries: none of them changed the time to first byte. So it's model-side time (hidden reasoning plus latency variance), not something our code adds.
+- **Where the time goes (investigated on Opus 5.5):** a tool-selecting Claude call takes ~2–3 s. The final answer call takes ~8–10 s, but we measured that **~8 s of that passes before the API sends its first byte** (`message_start`). After that, the answer text arrives in under a second. We isolated the cause by testing the same call without the refusal fallback, without the JSON schema, and with thinking summaries: none of them changed the time to first byte. So it's model-side time (hidden reasoning plus latency variance), not something our code adds.
 - **Streaming (`POST /api/chat/stream`, Server-Sent Events):** the UI shows live progress ("Thinking…", "✓ get_hub_risk(dallas)", "Reviewing tool results…") within ~2 s, then the answer text as soon as it exists. The `answer` field is decoded incrementally from the partial JSON (`AnswerFieldStreamer`, unit-tested); the full validated response follows in a final event. Streaming improves *perceived* latency. It can't shorten the model's time to first byte; a faster model tier would, and that's a quality/latency trade-off to settle with the eval set.
 - **Deliberately not used:**
   - RAG or a vector DB: the data is structured numbers that tools return exactly, so retrieval would only add a way to be wrong.

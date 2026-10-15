@@ -19,9 +19,9 @@ CLIMATE_START = date(2021, 1, 1)
 CLIMATE_END = date(2025, 12, 31)
 
 # LLM
-ANTHROPIC_MODEL = os.getenv("ANTHROPIC_MODEL", "claude-opus-5-5")
-ANTHROPIC_EFFORT = os.getenv("ANTHROPIC_EFFORT", "low")  # evals: 13/13 at low, ~25% faster than medium
-MAX_AGENT_STEPS = int(os.getenv("MAX_AGENT_STEPS", "8"))
+ANTHROPIC_MODEL = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-5-5")  # evals: 13/13, ~20% faster and half the price of Opus
+ANTHROPIC_EFFORT = os.getenv("ANTHROPIC_EFFORT", "low")  # low is recommended for chat; 13/13 evals on both models
+MAX_AGENT_STEPS = int(os.getenv("MAX_AGENT_STEPS", "5"))  # safety net on tool rounds per question
 
 # Optional shared token protecting /api/chat on a public deployment (empty = open).
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN", "")

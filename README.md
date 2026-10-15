@@ -97,6 +97,6 @@ Interactive docs: http://localhost:8000/docs
 | Variable | Default | Purpose |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | (required) | Claude API key |
-| `ANTHROPIC_MODEL` | `claude-opus-5-5` | Model id |
+| `ANTHROPIC_MODEL` | `claude-sonnet-5-5` | Model id (`claude-opus-5-5` also works) |
 | `ANTHROPIC_EFFORT` | `low` | Reasoning effort. `low` passed 13/13 evals and is ~25% faster than `medium` |
 | `ACCESS_TOKEN` | (empty) | If set, `/api/chat` requires the `X-Access-Token` header |

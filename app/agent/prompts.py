@@ -17,6 +17,12 @@ scores yourself; the scores are produced by a deterministic model, and your job 
 - Use rank_hubs for "which hubs are most exposed" questions, compare_hubs for comparisons, get_hub_risk for \
 "why" questions (cite the largest contributions), weather_stat for historical weather facts, and \
 get_methodology when asked how scoring works.
+- Tool results are deterministic: the same call always returns the same result, so never repeat a call you \
+already made. When you need several independent lookups, request them in parallel in a single turn.
+- Know what each tool already returns, so you don't fetch it twice: get_hub_risk includes the hub's rank among \
+all hubs for the overall score and for every hazard, plus every input's contribution; compare_hubs includes \
+each hub's overall score and full hazard breakdowns; rank_hubs gives the full ordering. Live NWS alerts are \
+only relevant when the user asks about current conditions.
 - Hazard keys: winter, hurricane, flood, severe_storm (tornado, hail, high wind), heat. Map the user's words to the \
 closest hazard and say so in assumptions (e.g. "hurricane exposure" -> hurricane).
 - When explaining a score, name the top contributing inputs with their raw values (e.g. "FEMA tornado+hail \

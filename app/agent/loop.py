@@ -125,6 +125,7 @@ def ask_stream(question: str, session_id: str | None = None) -> Iterator[dict]:
     answer: AgentAnswer | None = None
     error = None
     model_used = ANTHROPIC_MODEL
+    seen_calls: set[str] = set()   # (tool, input) pairs already run this turn - tools are deterministic
 
     try:
         for step in range(MAX_AGENT_STEPS + 1):
@@ -155,7 +156,16 @@ def ask_stream(question: str, session_id: str | None = None) -> Iterator[dict]:
                     if b.type != "tool_use":
                         continue
                     t_tool = time.time()
-                    out, is_err = run_tool(b.name, b.input)
+                    call_key = f"{b.name}:{json.dumps(b.input, sort_keys=True)}"
+                    if call_key in seen_calls:
+                        # Observed with Sonnet: the same call repeated several times. Don't re-run it;
+                        # tell the model it already has the (unchangeable) result so it moves on to answer.
+                        out, is_err = json.dumps({"note": "Duplicate call: you already have this exact result "
+                                                          "earlier in this turn, and it cannot change. Answer "
+                                                          "with the data you have."}), False
+                    else:
+                        seen_calls.add(call_key)
+                        out, is_err = run_tool(b.name, b.input)
                     entry = {"step": step, "tool": b.name, "input": b.input, "is_error": is_err,
                              "ms": int(1000 * (time.time() - t_tool)), "output_preview": out[:300]}
                     trace.append(entry)
