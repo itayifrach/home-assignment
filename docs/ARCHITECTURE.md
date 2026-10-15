@@ -107,7 +107,7 @@ data/
 scripts/refresh_data.py rebuild the snapshot from public APIs
 evals/                  cases.yaml + run_evals.py (agent evaluation)
 tests/                  pytest unit tests for the scoring logic (offline)
-docs/                   this document + ai-session/ (full AI-assistant transcript)
+docs/                   this document
 Dockerfile, render.yaml deployment
 ```
 

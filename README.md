@@ -7,7 +7,7 @@ An AI agent that helps logistics analysts decide **which US distribution hubs ar
 - **Chat UI:** a chat page plus a live risk leaderboard. Every answer shows key drivers, assumptions, caveats, sources, confidence and the tool trace.
 - **Evaluation:** offline unit tests for the KPI, plus a 13-case agent eval with deterministic grading.
 
-📐 **Design and architecture:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · 🤖 **AI session transcript:** [docs/ai-session/](docs/ai-session/)
+📐 **Design and architecture:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
 ---
 
