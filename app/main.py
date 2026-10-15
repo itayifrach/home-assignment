@@ -2,17 +2,18 @@
 
 Run:  uvicorn app.main:app --reload
 """
+import json
 import time
 from collections import defaultdict, deque
 from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from app.agent.loop import ask
+from app.agent.loop import ask, ask_stream
 from app.agent.schemas import ChatResponse
 from app.agent.tools import HAZARD_KEYS, t_get_methodology
 from app.config import ACCESS_TOKEN, ANTHROPIC_MODEL
@@ -60,6 +61,21 @@ class ChatRequest(BaseModel):
 def chat(req: ChatRequest) -> ChatResponse:
     # Sync def: FastAPI runs it in a threadpool, so the blocking Claude call doesn't block the event loop.
     return ask(req.message, req.session_id)
+
+
+@app.post("/api/chat/stream", dependencies=[Depends(guard)])
+def chat_stream(req: ChatRequest) -> StreamingResponse:
+    """Same agent, as Server-Sent Events: status/tool progress, answer text as it is generated, then the
+    full validated response in a final `final` event. The UI uses this; /api/chat stays for API clients."""
+    def events():
+        for ev in ask_stream(req.message, req.session_id):
+            if ev["type"] == "final":
+                ev = {"type": "final", "response": ev["response"].model_dump()}
+            yield f"data: {json.dumps(ev, default=str)}\n\n"
+
+    # A sync generator: Starlette iterates it in a threadpool, so the blocking Claude stream is fine.
+    return StreamingResponse(events(), media_type="text/event-stream",
+                             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 
 @app.get("/api/scores")

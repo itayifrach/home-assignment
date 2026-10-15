@@ -52,7 +52,8 @@ python -m scripts.refresh_data            # skips hubs already fetched; add --fo
 ## API
 | Endpoint | Description |
 |---|---|
-| `POST /api/chat` `{message, session_id?}` | Ask the agent. Returns the validated answer JSON plus `session_id`, `tool_trace`, `validation_warnings`, `latency_ms` |
+| `POST /api/chat` `{message, session_id?}` | Ask the agent. Returns the validated answer JSON plus `session_id`, `tool_trace`, `validation_warnings`, `latency_ms`, `usage` |
+| `POST /api/chat/stream` `{message, session_id?}` | Same, as Server-Sent Events: `status`, `tool`, `answer_delta` (answer text as generated), then `final` with the full response. Used by the UI |
 | `GET /api/scores?hazard=overall\|winter\|flood\|hurricane\|severe_storm\|heat&region=` | Deterministic ranking |
 | `GET /api/hubs/{hub_id}` | Full score breakdown for one hub |
 | `GET /api/methodology` | Thresholds, weights, tiers, data provenance |

@@ -71,23 +71,60 @@ async function send(text) {
   if (!text) return;
   $("#input").value = "";
   $("#send").disabled = true;
-  addMsg("user", esc(text));
-  const pending = addMsg("agent thinking", "Analyzing… (calling tools and scoring model)");
+  const userMsg = addMsg("user", esc(text));
+  const pending = addMsg("agent", `<div class="progress thinking">Starting…</div><div class="live"></div>`);
+  const progress = pending.querySelector(".progress");
+  const live = pending.querySelector(".live");
+  const steps = [];
+  let liveText = "", frame = null;
+  const renderLive = () => { frame = null; live.innerHTML = md(liveText); pending.scrollIntoView({ block: "end" }); };
+
+  function onEvent(ev) {
+    if (ev.type === "status") {
+      progress.textContent = [...steps, ev.message].join("\n");
+    } else if (ev.type === "tool") {
+      steps.push(`${ev.is_error ? "✗" : "✓"} ${ev.tool}(${Object.values(ev.input).filter((v) => v !== null).join(", ")})`);
+      progress.textContent = steps.join("\n");
+    } else if (ev.type === "answer_delta") {
+      liveText += ev.text;
+      frame = frame || setTimeout(renderLive, 40);   // batch re-renders; rAF is throttled in background tabs
+    } else if (ev.type === "answer_reset") {
+      liveText = ""; live.innerHTML = "";
+    } else if (ev.type === "final") {
+      const r = ev.response;
+      sessionId = r.session_id; store("sessionId", sessionId);
+      renderAnswer(r);   // render first: if it throws, the catch below can still show the error in `pending`
+      pending.remove();
+    }
+  }
+
   try {
     const headers = { "Content-Type": "application/json" };
     const token = store("accessToken");
     if (token) headers["X-Access-Token"] = token;
-    const res = await fetch("/api/chat", { method: "POST", headers, body: JSON.stringify({ message: text, session_id: sessionId }) });
+    const res = await fetch("/api/chat/stream", { method: "POST", headers, body: JSON.stringify({ message: text, session_id: sessionId }) });
     if (res.status === 401) {
       const t = prompt("This demo is protected. Enter the access token:");
-      if (t) { store("accessToken", t); pending.remove(); $("#send").disabled = false; return send(text); }
+      if (t) { store("accessToken", t); pending.remove(); userMsg.remove(); $("#send").disabled = false; return send(text); }
       throw new Error("Access token required");
     }
     if (!res.ok) throw new Error((await res.json()).detail || res.statusText);
-    const r = await res.json();
-    sessionId = r.session_id; store("sessionId", sessionId);
-    renderAnswer(r);   // render first: if it throws, the catch below can still show the error in `pending`
-    pending.remove();
+
+    // Parse Server-Sent Events from the response body: events are "data: {...}" separated by a blank line.
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = "";
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+      let sep;
+      while ((sep = buf.indexOf("\n\n")) >= 0) {
+        const chunk = buf.slice(0, sep); buf = buf.slice(sep + 2);
+        if (chunk.startsWith("data: ")) onEvent(JSON.parse(chunk.slice(6)));
+      }
+    }
+    if (pending.isConnected) throw new Error("The connection closed before the answer finished.");
   } catch (e) {
     pending.className = "msg agent"; pending.textContent = `Error: ${e.message}`;
   } finally {

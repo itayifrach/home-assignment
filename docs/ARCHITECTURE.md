@@ -29,7 +29,7 @@ flowchart LR
 | Component | Responsibility | Talks to |
 |---|---|---|
 | **Chat UI** (`app/static/`) | Chat, risk leaderboard, and collapsible evidence: drivers, assumptions, caveats, sources, tool trace, raw JSON | API over HTTP/JSON |
-| **API** (`app/main.py`) | `POST /api/chat`, `GET /api/scores`, `GET /api/hubs/{id}`, `GET /api/methodology`, `GET /health`. Optional access token and per-IP rate limit for a public URL | Agent, scoring engine |
+| **API** (`app/main.py`) | `POST /api/chat`, `POST /api/chat/stream` (SSE), `GET /api/scores`, `GET /api/hubs/{id}`, `GET /api/methodology`, `GET /health`. Optional access token and per-IP rate limit for a public URL | Agent, scoring engine |
 | **Agent loop** (`app/agent/loop.py`) | Manual Claude tool-use loop (at most 8 steps). Final answer constrained by `output_config.format` (JSON schema), re-validated with Pydantic, numbers checked by a guardrail. Conversation history kept per `session_id` | Claude API, Tools, SQLite |
 | **Tools** (`app/agent/tools.py`) | 7 strict-schema tools: `list_hubs`, `rank_hubs`, `get_hub_risk`, `compare_hubs`, `weather_stat`, `get_active_alerts`, `get_methodology`. Hub ids are enums, so the model cannot invent a hub | Scoring engine, external APIs, SQLite cache |
 | **Scoring engine** (`app/scoring/`) | Pure functions: raw daily weather → disruption-day KPIs → hazard scores → overall score, with a full contribution breakdown. All thresholds and weights live in `weights.yaml` | Snapshot |
@@ -129,7 +129,7 @@ Dockerfile, render.yaml deployment
 This is a **demo-grade, single-process** design, chosen on purpose for a 1-day build:
 - **Static HTML UI served by FastAPI:** no build step and one deployable. It doesn't scale as a product UI (no component model, no streaming, no auth). Next step: a React/Next.js front-end on a CDN.
 - **SQLite + in-process state:** works on one instance only, and Render's free-tier disk is ephemeral, so sessions reset on redeploy. That's fine for a demo because the scoring inputs are committed to git. Next step: Postgres and Redis, then stateless API replicas behind a load balancer.
-- **Synchronous agent call:** a chat request blocks one worker thread for 5–30 s. Next steps: streaming responses (SSE), async workers, and a queue for heavy jobs.
+- **Synchronous agent call:** a chat request (streamed over SSE) holds one worker thread for 5–30 s. Next steps: an async Claude client and a queue for heavy jobs.
 - **Rate limiting:** a naive in-memory per-IP limit. Next step: limits at the API gateway.
 - **Cost and latency:** each question makes 2–5 Claude calls; see the measurements below.
 
@@ -141,7 +141,8 @@ This is a **demo-grade, single-process** design, chosen on purpose for a 1-day b
 | effort `low` (**default**) | 13/13 | 146 s | 5–15 s |
 
 - **Prompt caching (the API's KV cache) is on and working.** Tools, the system prompt and the history form a stable prefix, and >99% of input tokens are read from cache. One measured follow-up turn: 6 uncached input tokens and 14,238 tokens read from cache.
-- **Where the time goes:** a tool-selecting Claude call takes ~2–3 s. The final call, which writes ~1,000–1,500 tokens of answer JSON, takes ~8–14 s. Generating output is the bottleneck, not processing input, so the next latency lever is **streaming** the answer to the UI, not more caching.
+- **Where the time goes:** a tool-selecting Claude call takes ~2–3 s. The final answer call takes ~8–10 s, but we measured that **~8 s of that passes before the API sends its first byte** (`message_start`). After that, the answer text arrives in under a second. We isolated the cause by testing the same call without the refusal fallback, without the JSON schema, and with thinking summaries: none of them changed the time to first byte. So it's model-side time (hidden reasoning plus latency variance), not something our code adds.
+- **Streaming (`POST /api/chat/stream`, Server-Sent Events):** the UI shows live progress ("Thinking…", "✓ get_hub_risk(dallas)", "Reviewing tool results…") within ~2 s, then the answer text as soon as it exists. The `answer` field is decoded incrementally from the partial JSON (`AnswerFieldStreamer`, unit-tested); the full validated response follows in a final event. Streaming improves *perceived* latency. It can't shorten the model's time to first byte; a faster model tier would, and that's a quality/latency trade-off to settle with the eval set.
 - **Deliberately not used:**
   - RAG or a vector DB: the data is structured numbers that tools return exactly, so retrieval would only add a way to be wrong.
   - Multi-agent setups or fine-tuning: unnecessary for this scope.
