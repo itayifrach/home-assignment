@@ -1,7 +1,7 @@
 # Weather Disruption Risk - KPI definition.
 # This file IS the business logic: analysts can tune thresholds and weights without touching code.
 # Bump `version` whenever you change it - every score snapshot records the version it was computed with.
-version: "1.0"
+version: "1.1"
 
 # Step 1 - daily thresholds that turn raw weather into "disruption days"
 thresholds:
@@ -59,15 +59,19 @@ hazards:
       - {source: climate, metric: extreme_heat_days_per_year, weight: 0.60}
 
 # Step 4 - headline KPI: Weather Disruption Risk Score (0-100)
+# v1.1: weighted toward life-threatening hazards, following the order of the US National Weather Service's
+# long-term weather fatality statistics (heat and flood deadliest, then tornado/severe storm, then hurricane,
+# then winter). Hurricanes come with days of warning (evacuation possible); tornadoes give minutes.
+# Winter stays in the score because it disrupts operations, but it is less often lethal on site.
 overall_weights:
-  winter: 0.25
+  heat: 0.25
   flood: 0.25
-  hurricane: 0.20
-  severe_storm: 0.15
-  heat: 0.15
+  severe_storm: 0.20
+  hurricane: 0.15
+  winter: 0.15
 
 # Tier thresholds for the overall score. The overall score averages five hazards and no location is exposed
-# to all of them, so its range is compressed (network max ~47). Calibrated so "High" means roughly
+# to all of them, so its range is compressed (network max ~43 under v1.1). Calibrated so "High" means roughly
 # "one Very High hazard plus meaningful secondary exposure".
 overall_tiers:
   - {min: 45, label: Very High}

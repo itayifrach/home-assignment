@@ -73,7 +73,7 @@ These are scaled **absolutely**: 0 days scores 0, and a saturation level (for ex
 
 **Design rule for the weights:** where 5 years of observations sample a hazard well (snow, freeze, heat and heavy rain recur every year), observed data gets real weight. For rare events (hurricanes, tornadoes) FEMA's long-record data dominates. We reached this rule by checking the first version's results. Generic wind days made Boston look more hurricane-exposed than Miami, and FEMA's low heat *loss rate* in Phoenix (a city built for heat) hid its 100+ days a year at or above 100 °F.
 
-**Step 4: overall score** = 25% winter + 25% flood + 20% hurricane + 15% severe storm + 15% heat.
+**Step 4: overall score** = 25% heat + 25% flood + 20% severe storm + 15% hurricane + 15% winter (weights v1.1). The weights favor **life-threatening** hazards and follow the order of the US National Weather Service's long-term weather-fatality statistics: heat and flood are the deadliest, then tornadoes, then hurricanes (days of warning allow evacuation), then winter. Winter stays in because it disrupts operations, even though it is less often lethal on site. v1.0 weighted winter at 25%; the change moved Dallas from #6 to #3 and Phoenix from #12 to #4.
 - Hazard tiers: Low <25, Moderate <50, High <75, Very High ≥75.
 - The overall score has its own tiers (Very High ≥45, High ≥35, Moderate ≥25). It averages five hazards and no place has all of them, so its range is compressed.
 - Every hub also reports its `top_hazard`, because resilience investments are hazard-specific (flood barriers vs. snow equipment).

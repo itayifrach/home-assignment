@@ -76,7 +76,7 @@ Interactive docs: http://localhost:8000/docs
 | Severe storm | 70% FEMA (tornado, hail) + 30% high-wind days |
 | Extreme heat | 40% FEMA heat wave + 60% extreme-heat days |
 
-**Weather Disruption Risk Score** = 25% winter + 25% flood + 20% hurricane + 15% severe storm + 15% heat.
+**Weather Disruption Risk Score** = 25% heat + 25% flood + 20% severe storm + 15% hurricane + 15% winter. The weights favor life-threatening hazards, following the order of the US National Weather Service's weather-fatality statistics.
 - FEMA inputs are the county's Expected Annual Loss *Rate* national percentile.
 - Observed inputs are disruption days per year, scaled to 100 at a saturation level.
 - Everything is tunable in [`app/scoring/weights.yaml`](app/scoring/weights.yaml).

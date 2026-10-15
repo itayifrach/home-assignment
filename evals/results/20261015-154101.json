@@ -1,0 +1,293 @@
+{
+  "passed": 13,
+  "total": 13,
+  "cases": [
+    {
+      "id": "midwest_winter_ranking",
+      "passed": true,
+      "failures": [],
+      "seconds": 12.1,
+      "answer": "**Minneapolis has the highest winter exposure in the Midwest (63.0, High).** Detroit (53.4) and Omaha (51.0) come next. These three are the only Midwest hubs rated High.\n\n| Rank | Hub | Winter score | Tier |\n|---|---|---|---|\n| 1 | Minneapolis | 63.0 | High |\n| 2 | Detroit | 53.4 | High |\n| 3 | Omaha | 51.0 | High |\n| 4 | Chicago | 44.7 | Moderate |\n| 5 | Kansas City | 35.0 | Moderate |\n| 6 | St. Louis | 33.5 | Moderate |\n| 7 | Indianapolis | 32.3 | Moderate |\n| 8 | Columbus | 32.0 | Moderate |\n\nChicago sits between the two groups. The bottom four are close together (32.0\u201335.0), so their order doesn't mean much.",
+      "tools": [
+        "rank_hubs"
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "input_tokens": 6,
+        "cache_read_input_tokens": 4427,
+        "cache_creation_input_tokens": 5078,
+        "output_tokens": 1140
+      },
+      "hubs": [
+        "minneapolis",
+        "detroit",
+        "omaha",
+        "chicago",
+        "kansas_city",
+        "st_louis",
+        "indianapolis",
+        "columbus"
+      ],
+      "question_type": "ranking"
+    },
+    {
+      "id": "miami_vs_houston_hurricane_flood",
+      "passed": true,
+      "failures": [],
+      "seconds": 10.5,
+      "answer": "**Hurricane exposure is basically the same at both hubs. Houston has much more flood exposure.**\n\n| Hub | Hurricane | Flood | Overall |\n|---|---|---|---|\n| Miami | 85.3 (Very High) | 60.1 (High) | 32.9 (Moderate) |\n| Houston | 83.8 (Very High) | 90.0 (Very High) | 43.3 (High) |\n\n- **Hurricane:** Each score is just the FEMA NRI hurricane loss-rate percentile: 85.3 for Miami and 83.8 for Houston. A 1.5-point gap is too small to mean much.\n- **Flood:** Houston scores about 30 points higher, for two reasons:\n  - Its FEMA flood loss-rate percentile is higher: 85.5 vs 68.2. That adds 51.3 points to Houston's score and 40.9 to Miami's.\n  - It has about twice as many heavy-rain days (25 mm or more): 24.2/yr vs 12.0/yr. That adds 38.7 points vs 19.2. Houston is close to the 25-day cap where this input maxes out.\n\nIf you're choosing where to spend on resilience, these two hazards point to Houston. Miami's hurricane exposure is also very high, so hurricane measures make sense at both hubs.",
+      "tools": [
+        "compare_hubs"
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "input_tokens": 6,
+        "cache_read_input_tokens": 4429,
+        "cache_creation_input_tokens": 5380,
+        "output_tokens": 1076
+      },
+      "hubs": [
+        "miami",
+        "houston",
+        "miami",
+        "houston"
+      ],
+      "question_type": "comparison"
+    },
+    {
+      "id": "denver_snow_pct_last_year",
+      "passed": true,
+      "failures": [],
+      "seconds": 7.8,
+      "answer": "**About 11.8% of days in Denver had snowfall in 2025.** That's 43 of 365 days with at least 0.1 cm of snow.\n\n- Total snowfall for 2025: 57.9 cm\n- Total precipitation: 430.3 mm\n- Coldest low: -25.6 \u00b0C",
+      "tools": [
+        "weather_stat"
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "input_tokens": 6,
+        "cache_read_input_tokens": 4422,
+        "cache_creation_input_tokens": 4826,
+        "output_tokens": 610
+      },
+      "hubs": [
+        "denver"
+      ],
+      "question_type": "weather_statistic"
+    },
+    {
+      "id": "why_dallas_high",
+      "passed": true,
+      "failures": [],
+      "seconds": 12.0,
+      "answer": "**Dallas's High rating comes mostly from severe storms (tornado, hail, high wind), with flood risk adding to it.** Its overall score is **41.2 (High)**, which ranks **#3 of 22 hubs**. Overall scores average five hazards, so they stay compressed; no hub in the network scores above 50.\n\n**1. Severe storm: 81.4 (Very High), #1 of 22 hubs.** This adds 16.3 points to the overall score.\n- Dallas County is at the **98.1st national percentile** for FEMA's tornado + hail loss rate. That accounts for 68.7 of the 81.4 points.\n- Dallas sees **10.6 high-wind days a year** (gusts of 65 km/h or more), adding 12.7 points.\n\n**2. Flood: 50.4 (High), #12 of 22 hubs.** This adds 12.6 points to the overall score.\n- Dallas averages **17.0 heavy-rain days a year** (25 mm of rain or more), adding 27.2 points.\n- Its FEMA flood loss-rate percentile is **38.6**, adding 23.1 points.\n\n**The other hazards add little:**\n- Heat: 21.1, #5 of 22 hubs. Dallas averages 19.0 days a year at 38 \u00b0C or hotter.\n- Hurricane: 28.9, #9.\n- Winter: 18.3, #16.\n\n**What this means:** Spending on hail, wind and tornado protection (roof hardening, protected yards for vehicles, backup power) would cut the biggest part of Dallas's risk. Drainage and flood protection would be next.",
+      "tools": [
+        "get_hub_risk"
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "input_tokens": 6,
+        "cache_read_input_tokens": 4424,
+        "cache_creation_input_tokens": 6147,
+        "output_tokens": 1147
+      },
+      "hubs": [
+        "dallas",
+        "dallas",
+        "dallas"
+      ],
+      "question_type": "explanation"
+    },
+    {
+      "id": "top_overall_network",
+      "passed": true,
+      "failures": [],
+      "seconds": 15.9,
+      "answer": "**Based on overall weather risk, the three hubs to prioritize are Houston, New Orleans and Dallas.** All three are rated High. The gap below them is very small, though, so the top 5 is effectively a tie.\n\n| Rank | Hub | Overall | Top hazard | What drives it |\n|---|---|---|---|---|\n| 1 | **Houston** | 43.3 (High) | Flood 90.0 (Very High) | FEMA flood loss-rate percentile 85.5; 24.2 heavy-rain days/yr. Hurricane is also 83.8 |\n| 2 | **New Orleans** | 42.7 (High) | Hurricane 98.8 (Very High) | FEMA hurricane percentile 98.8. Flood is also 65.3 |\n| 3 | **Dallas** | 41.2 (High) | Severe storm 81.4 (Very High) | FEMA tornado+hail percentile 98.1; 10.6 high-wind days/yr |\n\n**Close behind:** Phoenix scores 41.1, just 0.1 below Dallas, driven by heat (80.8, with 101.8 extreme-heat days/yr). Omaha scores 40.7, driven by severe storms (79.6, FEMA tornado+hail percentile 90.1).\n\n**What this means for investment:** The overall score is an average of five hazards, so small gaps like these aren't meaningful. It's better to match each investment to the hub's main hazard:\n- **Houston:** flood and hurricane protection\n- **New Orleans:** hurricane hardening\n- **Dallas:** tornado, hail and wind resilience\n\nIf heat or severe storms are bigger concerns for your operations, Phoenix or Omaha could reasonably replace Dallas.",
+      "tools": [
+        "compare_hubs",
+        "rank_hubs"
+      ],
+      "usage": {
+        "llm_calls": 3,
+        "input_tokens": 8,
+        "cache_read_input_tokens": 9299,
+        "cache_creation_input_tokens": 11161,
+        "output_tokens": 1566
+      },
+      "hubs": [
+        "houston",
+        "new_orleans",
+        "dallas",
+        "phoenix",
+        "omaha"
+      ],
+      "question_type": "ranking"
+    },
+    {
+      "id": "followup_resolves_reference",
+      "passed": true,
+      "failures": [],
+      "seconds": 22.2,
+      "answer": "**St. Louis's flood score of 66.7 (High) comes mostly from FEMA's flood loss data, not from how often it rains heavily.** The FEMA input accounts for 51.0 of the 66.7 points.\n\n**Flood score breakdown (66.7, #4 of 22 hubs network-wide):**\n\n| Input | Raw value | Normalized | Weight | Contribution |\n|---|---|---|---|---|\n| FEMA NRI flood loss-rate percentile (the higher of inland and coastal flood) | **85.0** national percentile | 85.0 | 0.6 | **51.0** |\n| Heavy-rain days (\u226525 mm), observed | **9.8 days/yr** | 39.2 (100 = 25 days/yr) | 0.4 | 15.7 |\n\n**What this means:**\n- **FEMA flood loss rate is the main driver.** St. Louis city ranks in the 85th percentile of all US counties, and this input carries 60% of the flood weight.\n- **Heavy rain adds a moderate amount.** 9.8 heavy-rain days a year is meaningful but well below the 25-day level that would score 100, so this input contributes only 15.7 points.\n\n**Overall picture:** Flood is St. Louis's top hazard. It contributes 16.7 of the hub's overall score of 33.4 (Moderate, #10 of 22). Severe storm comes next, with a hazard score of 47.3 that contributes 9.5 points overall.",
+      "tools": [
+        "get_hub_risk",
+        "rank_hubs"
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "input_tokens": 6,
+        "cache_read_input_tokens": 11136,
+        "cache_creation_input_tokens": 2717,
+        "output_tokens": 1129
+      },
+      "hubs": [
+        "st_louis",
+        "st_louis"
+      ],
+      "question_type": "explanation"
+    },
+    {
+      "id": "heat_top_hub",
+      "passed": true,
+      "failures": [],
+      "seconds": 12.1,
+      "answer": "**Phoenix has by far the highest extreme-heat exposure in the network.** Its heat score is **80.8 (Very High)** and it ranks #1 of 22 hubs. That is about 2.5\u00d7 the next hub, Omaha, at 32.5 (Moderate).\n\n**Why Phoenix scores so high:**\n- **Observed extreme-heat days:** 101.8 days a year with highs \u2265 38 \u00b0C. The model's scale tops out at 60 days a year, so this input is maxed at 100 and adds 60.0 points, the largest part of the score.\n- **FEMA heat-wave loss-rate percentile:** 51.9 (compared with all US counties), adding 20.8 points.\n\n**Top 5 hubs by heat:** Phoenix 80.8, Omaha 32.5, Los Angeles 22.7, Seattle 21.8, Dallas 21.1.\n\nHeat is also Phoenix's biggest hazard overall. Its overall score is 41.1 (High), ranking #4 of 22. Its second-biggest hazard is flood, at 56.4 (High).",
+      "tools": [
+        "get_hub_risk",
+        "rank_hubs"
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "input_tokens": 6,
+        "cache_read_input_tokens": 4420,
+        "cache_creation_input_tokens": 6642,
+        "output_tokens": 1178
+      },
+      "hubs": [
+        "phoenix",
+        "omaha",
+        "los_angeles",
+        "seattle",
+        "dallas",
+        "phoenix"
+      ],
+      "question_type": "ranking"
+    },
+    {
+      "id": "methodology",
+      "passed": true,
+      "failures": [],
+      "seconds": 15.4,
+      "answer": "**The Weather Disruption Risk Score is a weighted average of five hazard scores. Each hazard score runs 0\u2013100 and blends FEMA hazard percentiles with weather we actually observed at the hub.** (Methodology version 1.1, computed 2026-10-15.)\n\n**Step 1: Put each input on a 0\u2013100 scale**\n- **FEMA inputs:** the FEMA National Risk Index Expected Annual Loss *Rate* for the hub's county, given as a national percentile against all US counties. Because it is a loss rate, not total dollars, a big city's size doesn't inflate one facility's risk.\n- **Weather inputs:** the average number of disruption days per year at the hub from 2021-01-01 to 2025-12-31 (Open-Meteo / ERA5 data). The score rises in a straight line from 0 days = 0 to a cap (saturation level) = 100:\n  - Snow day (\u22651.0 cm): capped at 30 days/yr\n  - Hard freeze (low \u2264 \u221212 \u00b0C): capped at 45 days/yr\n  - Heavy rain (\u226525 mm): capped at 25 days/yr\n  - High wind (gusts \u226565 km/h): capped at 25 days/yr\n  - Extreme heat (high \u226538 \u00b0C): capped at 60 days/yr\n\n**Step 2: Calculate the five hazard scores**\n| Hazard | Formula |\n|---|---|\n| Winter | 0.50 \u00d7 FEMA (average of winter weather and ice storm) + 0.25 \u00d7 snow days + 0.25 \u00d7 hard-freeze days |\n| Hurricane | 1.00 \u00d7 FEMA hurricane |\n| Flood | 0.60 \u00d7 FEMA (higher of inland and coastal flood) + 0.40 \u00d7 heavy-rain days |\n| Severe storm | 0.70 \u00d7 FEMA (average of tornado and hail) + 0.30 \u00d7 high-wind days |\n| Heat | 0.40 \u00d7 FEMA heat wave + 0.60 \u00d7 extreme-heat days |\n\nTiers for each hazard: Very High \u226575, High \u226550, Moderate \u226525, Low <25.\n\n**Step 3: Combine them into the overall score**\nOverall = 0.25 \u00d7 Heat + 0.25 \u00d7 Flood + 0.20 \u00d7 Severe storm + 0.15 \u00d7 Hurricane + 0.15 \u00d7 Winter\n\nTiers for the overall score: Very High \u226545, High \u226535, Moderate \u226525, Low <25. These cutoffs are lower than the hazard cutoffs because averaging five hazards pulls scores together. A hub rarely scores high on all five, so a hub with one severe hazard can still have a modest overall score. Always look at the top hazard alongside the overall score.\n\n**How to read it:** the score shows how exposed a hub is relative to others. It is not a predicted loss or a probability.",
+      "tools": [
+        "get_methodology"
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "input_tokens": 6,
+        "cache_read_input_tokens": 4423,
+        "cache_creation_input_tokens": 5707,
+        "output_tokens": 1549
+      },
+      "hubs": [],
+      "question_type": "methodology"
+    },
+    {
+      "id": "non_hub_city_stat",
+      "passed": true,
+      "failures": [],
+      "seconds": 8.4,
+      "answer": "**In 2024, Buffalo, NY had 27 days with at least 1 cm of snowfall.** That is 7.4% of the year's 366 days.\n\n- Total snowfall for 2024: 79.6 cm\n- Coldest low: -14.0 \u00b0C\n- Strongest wind gust: 108.0 km/h\n\nBuffalo isn't one of our hubs, so it has no risk score.",
+      "tools": [
+        "weather_stat"
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "input_tokens": 6,
+        "cache_read_input_tokens": 4434,
+        "cache_creation_input_tokens": 4860,
+        "output_tokens": 697
+      },
+      "hubs": [],
+      "question_type": "weather_statistic"
+    },
+    {
+      "id": "out_of_scope_geography",
+      "passed": true,
+      "failures": [],
+      "seconds": 5.8,
+      "answer": "**This is outside what I can cover.** We don't have a London hub. The network is 22 US distribution hubs, and the risk model only scores US locations (it uses FEMA and US weather data).\n\nHere's what I can answer instead:\n- **Flood ranking for US hubs:** which hubs are most exposed to flooding (for example, the top 5 across the network or within one region).\n- **Why a hub floods:** the inputs behind one hub's flood score, such as the FEMA flood percentile and heavy-rain days per year.\n- **Past rainfall:** how many heavy-rain days a US hub or city had over a date range, such as 2025.",
+      "tools": [],
+      "usage": {
+        "llm_calls": 1,
+        "input_tokens": 4,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 4418,
+        "output_tokens": 429
+      },
+      "hubs": [],
+      "question_type": "out_of_scope"
+    },
+    {
+      "id": "out_of_scope_offtopic",
+      "passed": true,
+      "failures": [],
+      "seconds": 4.6,
+      "answer": "Writing poems is outside what I do. I'm the Weather Risk Intelligence Agent, and I only cover weather disruption risk at our 22 US distribution hubs.\n\nHere's what I can help with:\n- **Rankings:** which hubs are most exposed overall, or to winter, hurricane, flood, severe storm or heat\n- **Comparisons:** hazard scores for two or more hubs side by side\n- **Explanations:** what's driving a hub's score\n- **Weather history:** for example, snow days or heavy-rain days at a hub in 2025\n- **Live alerts:** current National Weather Service alerts at a hub",
+      "tools": [],
+      "usage": {
+        "llm_calls": 1,
+        "input_tokens": 4,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 4416,
+        "output_tokens": 416
+      },
+      "hubs": [],
+      "question_type": "out_of_scope"
+    },
+    {
+      "id": "unknown_hub",
+      "passed": true,
+      "failures": [],
+      "seconds": 5.4,
+      "answer": "**We don't have a Las Vegas hub.** It isn't one of our 22 hubs, so it has no Weather Disruption Risk Score. The model only scores our own hubs.\n\nOur West-region hubs are **Denver, Phoenix, Los Angeles and Seattle**. Phoenix is the closest in location and climate to Las Vegas.\n\nHere's what I can do instead:\n- Get the full risk breakdown for Phoenix or another West hub.\n- Look up past weather in Las Vegas. Historical weather stats work for any US city, for example extreme-heat days or heavy-rain days over a date range.",
+      "tools": [],
+      "usage": {
+        "llm_calls": 1,
+        "input_tokens": 4,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 4421,
+        "output_tokens": 476
+      },
+      "hubs": [],
+      "question_type": "out_of_scope"
+    },
+    {
+      "id": "resists_leading_false_premise",
+      "passed": true,
+      "failures": [],
+      "seconds": 9.1,
+      "answer": "**No, that's not right.** Seattle's hurricane score is **0.0 (Low)**. It ranks last of 22 hubs, tied with five others that also score 0.0.\n\nThe highest hurricane score in the network is **New Orleans at 98.8 (Very High)**. Rounded, that is the \"99\" you may be thinking of.\n\nTop 5 for hurricane exposure:\n1. New Orleans: 98.8 (Very High)\n2. Miami: 85.3 (Very High)\n3. Houston: 83.8 (Very High)\n4. Boston: 75.2 (Very High)\n5. Newark: 67.3 (High)",
+      "tools": [
+        "rank_hubs"
+      ],
+      "usage": {
+        "llm_calls": 2,
+        "input_tokens": 6,
+        "cache_read_input_tokens": 4434,
+        "cache_creation_input_tokens": 5863,
+        "output_tokens": 854
+      },
+      "hubs": [
+        "seattle",
+        "new_orleans",
+        "miami",
+        "houston",
+        "boston",
+        "newark"
+      ],
+      "question_type": "ranking"
+    }
+  ]
+}
